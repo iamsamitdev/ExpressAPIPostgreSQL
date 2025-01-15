@@ -6,6 +6,7 @@ import dotenv from 'dotenv'
 // Import Routes
 import dbtestRoutes from './routes/dbtestRoutes'
 import productRoutes from './routes/productRoutes'
+import userRoutes from './routes/userRoutes'
 
 // Import Swagger
 import setupSwagger from './utils/swagger'
@@ -24,6 +25,7 @@ setupSwagger(app)
 
 // Use Routes
 app.use('/api/testdb', dbtestRoutes)
+app.use('/api/users', userRoutes)
 app.use('/api/products', productRoutes)
 
 // Start Express server

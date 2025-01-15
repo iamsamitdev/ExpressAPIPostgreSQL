@@ -1,5 +1,6 @@
 import express from 'express'
 import * as productController from '../controllers/productController'
+import { authenticateJWT } from '../middlewares/authMiddleware'
 
 // สร้าง router
 const router = express.Router()
@@ -18,6 +19,8 @@ const router = express.Router()
  *   get:
  *     summary: Get all products
  *     tags: [Products]
+ *     security:
+ *       - BearerAuth: []
  *     responses:
  *       200:
  *         description: List of products
@@ -28,7 +31,7 @@ const router = express.Router()
  *              items:
  *               $ref: '#/components/schemas/Product'
  */
-router.get('/', productController.getAllProducts)
+router.get('/', authenticateJWT, productController.getAllProducts)
 
 // routes อ่านข้อมูลสินค้าตาม id
 /**
@@ -84,7 +87,7 @@ router.get('/:id', productController.getProductById)
  *             schema:
  *               $ref: '#/components/schemas/Product'
  */
-router.post('/', productController.createProduct)
+router.post('/', authenticateJWT, productController.createProduct)
 
 // routes แก้ไขข้อมูลสินค้า
 /**
@@ -123,7 +126,7 @@ router.post('/', productController.createProduct)
  *       404:
  *         description: Product not found
  */
-router.put('/:id', productController.updateProduct)
+router.put('/:id', authenticateJWT, productController.updateProduct)
 
 // routes ลบข้อมูลสินค้า
 /**
@@ -145,6 +148,6 @@ router.put('/:id', productController.updateProduct)
  *       404:
  *         description: Product not found
  */
-router.delete('/:id', productController.deleteProduct)
+router.delete('/:id', authenticateJWT, productController.deleteProduct)
 
 export default router
