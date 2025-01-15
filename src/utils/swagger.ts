@@ -20,7 +20,7 @@ const options: swaggerJSDoc.Options = {
         ],
         components: {
             securitySchemes: {
-                bearerAuth: {
+                BearerAuth: {
                     type: 'http',
                     scheme: 'bearer',
                     bearerFormat: 'JWT',
@@ -86,7 +86,7 @@ const options: swaggerJSDoc.Options = {
         },
         security: [
             {
-                bearerAuth: [],
+              BearerAuth: [],
             },
         ],
     },

@@ -1,6 +1,6 @@
 import express from 'express'
 import * as productController from '../controllers/productController'
-import { authenticateJWT } from '../middlewares/authMiddleware'
+import authenticateJWT from '../middlewares/authMiddleware'
 
 // สร้าง router
 const router = express.Router()
@@ -40,6 +40,8 @@ router.get('/', authenticateJWT, productController.getAllProducts)
  *   get:
  *     summary: Get a product by ID
  *     tags: [Products]
+ *     security:
+ *       - BearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -66,6 +68,8 @@ router.get('/:id', productController.getProductById)
  *   post:
  *     summary: Create a new product
  *     tags: [Products]
+ *     security:
+ *       - BearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -96,6 +100,8 @@ router.post('/', authenticateJWT, productController.createProduct)
  *   put:
  *     summary: Update an existing product
  *     tags: [Products]
+ *     security:
+ *       - BearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -135,6 +141,8 @@ router.put('/:id', authenticateJWT, productController.updateProduct)
  *   delete:
  *     summary: Delete a product by ID
  *     tags: [Products]
+ *     security:
+ *       - BearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id

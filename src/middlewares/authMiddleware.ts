@@ -5,7 +5,7 @@ interface AuthRequest extends Request {
     user?: { userId: number }
 }
 
-export const authenticateJWT = (
+const authenticateJWT = (
     req: AuthRequest, 
     res: Response, 
     next: NextFunction) => {
@@ -18,7 +18,7 @@ export const authenticateJWT = (
     // ถ้าไม่มี token ให้ส่ง status 401 กลับไป และแจ้งว่า Unauthorized
     if (!token) {
         res.status(401).json({ message: 'Unauthorized' })
-        return
+        return // ถ้าไม่มี token ให้หยุดการทำงานที่นี่
     }
 
     // ถ้ามี token ให้ตรวจสอบ token ว่าถูกต้องหรือไม่
@@ -32,3 +32,5 @@ export const authenticateJWT = (
     }
 
 }
+
+export default authenticateJWT

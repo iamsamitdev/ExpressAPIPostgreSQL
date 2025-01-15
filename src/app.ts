@@ -3,6 +3,9 @@ import express from 'express'
 // Dotenv
 import dotenv from 'dotenv'
 
+// Import CORS
+import cors from 'cors'
+
 // Import Routes
 import dbtestRoutes from './routes/dbtestRoutes'
 import productRoutes from './routes/productRoutes'
@@ -16,6 +19,16 @@ dotenv.config()
 
 // Create Express server
 const app = express()
+
+// Middleware for CORS
+app.use(cors(
+  {
+    // origin: 'http://localhost:4200, http://www.example.com',
+    origin: '*',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    allowedHeaders: ['Content-Type', 'Authorization'],
+  }
+))
 
 // Middleware for parsing application/json
 app.use(express.json())
